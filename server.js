@@ -1,5 +1,6 @@
 const app = require("express")();
 const bodyParser = require("body-parser");
+const serverless = require("serverless-http");
 const { sendMail } = require("./mail");
 
 app.use(
@@ -24,4 +25,5 @@ app.get("/mail", (req, res) => {
     });
 });
 
-app.listen(process.env.PORT || 3000, () => console.log("Server is running"));
+// app.listen(process.env.PORT || 3000, () => console.log("Server is running"));
+module.exports.handler = serverless(app);
